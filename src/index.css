@@ -1,0 +1,166 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.labelStyle {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.inputStyle {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.inputStyle:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
+}
+
+.btnPrimary {
+  background: #0d9488;
+  padding: 10px 26px;
+  border-radius: 0.6rem;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btnPrimary:hover {
+  background: #0f766e;
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.35);
+}
+
+.btnDanger {
+  background: #f87171;
+  padding: 10px 26px;
+  border-radius: 0.6rem;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btnDanger:hover {
+  background: #ef4444;
+  box-shadow: 0 8px 20px rgba(248, 113, 113, 0.35);
+}
+
+/* Navbar slide-down animation */
+@keyframes navbarDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-navbarDown {
+  animation: navbarDown 0.5s ease-out forwards;
+}
+
+/* Bigger buttons */
+.btnPrimarySmall,
+.btnSecondarySmall,
+.btnLogout,
+.btnDangerSmall {
+  padding: 10px 22px;
+  border-radius: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/* Button colors */
+.btnPrimarySmall {
+  background: #0d9488;
+  color: white;
+}
+
+.btnPrimarySmall:hover {
+  background: #0f766e;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
+}
+
+.btnSecondarySmall {
+  background: #38bdf8;
+  color: white;
+}
+
+.btnSecondarySmall:hover {
+  background: #0ea5e9;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+}
+
+.btnLogout {
+  background: #f87171;
+  color: white;
+}
+
+.btnLogout:hover {
+  background: #ef4444;
+  box-shadow: 0 4px 14px rgba(248, 113, 113, 0.35);
+}
+
+.btnDangerSmall {
+  background: #fb7185;
+  color: white;
+}
+
+.btnDangerSmall:hover {
+  background: #f43f5e;
+  box-shadow: 0 4px 14px rgba(251, 113, 133, 0.35);
+}
+/* Input styling */
+.inputStyle {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1.1rem;
+  border-radius: 0.9rem;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  transition: 0.3s;
+}
+
+.inputStyle:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.25);
+}
+
+/* Floating train animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}

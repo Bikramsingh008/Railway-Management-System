@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@keyframes trainMove {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+.animate-trainMove {
+  animation: trainMove 22s linear infinite;
+  will-change: transform;
+}
