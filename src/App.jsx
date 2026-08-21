@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import Faqs from "./components/Faqs";
 import AdminDashboard from "./components/AdminDashboard";
+import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";  // ⬅ ADD THIS IMPORT
 import SearchResults from "./components/SearchResults";
 
@@ -20,7 +21,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search-results" element={<SearchResults />} />
-          <Route path="/about" element={<div className="p-10 text-center">About Us Page</div>} />
+          <Route path="/about" element={<About />} />
           <Route path="/faqs" element={<Faqs />} />
 
           {/* USER ROUTES */}

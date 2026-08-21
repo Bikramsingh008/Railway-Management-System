@@ -26,7 +26,7 @@ const MidComponent = () => {
     });
   };
 
--  return (
+  return (
     <div className="bg-gradient-to-br from-teal-50 via-sky-50 to-emerald-50 flex items-start justify-center py-30 px-6 pb-28">
 
       <div className="flex flex-col lg:flex-row items-center gap-16 max-w-7xl w-full">
