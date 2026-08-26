@@ -11,8 +11,10 @@ const MidComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedTrains = JSON.parse(localStorage.getItem("trainData")) || [];
-    setAllTrains(storedTrains);
+    fetch("http://localhost:5000/api/trains")
+      .then(res => res.json())
+      .then(data => { if (data.success) setAllTrains(data.trains); })
+      .catch(() => setAllTrains([]));
   }, []);
 
   const handleSearch = () => {
@@ -47,17 +49,33 @@ const MidComponent = () => {
           </h2>
 
           <div className="space-y-7">
-            <Input
-              placeholder="Source Station"
-              value={source}
-              onChange={(e) => setSource(e.target.value)}
-            />
+            <div className="flex items-center gap-3">
+              <Input
+                placeholder="Source Station"
+                value={source}
+                onChange={(e) => setSource(e.target.value)}
+              />
+              
+              <button 
+                onClick={() => {
+                  const temp = source;
+                  setSource(destination);
+                  setDestination(temp);
+                }}
+                className="p-3 bg-teal-50 text-teal-600 rounded-full hover:bg-teal-100 transition-colors shadow-sm border border-teal-200 flex-shrink-0"
+                title="Swap stations"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                </svg>
+              </button>
 
-            <Input
-              placeholder="Destination Station"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-            />
+              <Input
+                placeholder="Destination Station"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+              />
+            </div>
 
             <input
               type="date"

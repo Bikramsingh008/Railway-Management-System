@@ -11,6 +11,10 @@ import AdminDashboard from "./components/AdminDashboard";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";  // ⬅ ADD THIS IMPORT
 import SearchResults from "./components/SearchResults";
+import Booking from "./pages/Booking";
+import Profile from "./pages/Profile";
+import MyBookings from "./pages/MyBookings";
+import TicketSlip from "./pages/TicketSlip";
 
 function App() {
   return (
@@ -21,13 +25,17 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/booking" element={<Booking />} />
           <Route path="/about" element={<About />} />
           <Route path="/faqs" element={<Faqs />} />
 
           {/* USER ROUTES */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />   {/* ⬅ FIXED */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
+          <Route path="/ticket/:id" element={<TicketSlip />} />
 
           {/* ADMIN ROUTES */}
           <Route path="/admin" element={<Admin />} />

@@ -6,17 +6,37 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
+  const checkUser = () => {
     const saved = localStorage.getItem("user");
     if (saved && saved !== "null") {
-      const parsed = JSON.parse(saved);
-      if (parsed?.username) setUser(parsed);
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed?.username) {
+          setUser(parsed);
+          return;
+        }
+      } catch (e) {}
     }
+    setUser(null);
+  };
+
+  useEffect(() => {
+    checkUser();
+    
+    // Listen for custom login/logout events or localstorage updates
+    window.addEventListener("auth-change", checkUser);
+    window.addEventListener("storage", checkUser);
+    
+    return () => {
+      window.removeEventListener("auth-change", checkUser);
+      window.removeEventListener("storage", checkUser);
+    };
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     setUser(null);
+    window.dispatchEvent(new Event("auth-change"));
     navigate("/login");
   };
 
@@ -58,9 +78,12 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             {user ? (
               <>
-                <span className="hidden sm:block text-slate-600 font-medium">
-                  👋 {user.username}
-                </span>
+                <Link
+                  to="/profile"
+                  className="hidden sm:block text-slate-700 font-bold hover:text-teal-600 transition flex items-center gap-2"
+                >
+                  <span className="text-xl">👋</span> {user.username}
+                </Link>
 
                 <button
                   onClick={handleLogout}
@@ -70,6 +93,7 @@ const Navbar = () => {
                     hover:bg-rose-200
                     transition
                     font-semibold
+                    ml-2
                   "
                 >
                   Logout
@@ -101,20 +125,21 @@ const Navbar = () => {
                 >
                   Register
                 </Link>
+                
+                <Link
+                  to="/admin"
+                  className="
+                    px-6 py-2 rounded-full
+                    bg-slate-800 text-white
+                    hover:bg-slate-900
+                    transition font-semibold
+                    ml-2
+                  "
+                >
+                  Admin
+                </Link>
               </>
             )}
-
-            <Link
-              to="/admin"
-              className="
-                px-6 py-2 rounded-full
-                bg-slate-800 text-white
-                hover:bg-slate-900
-                transition font-semibold
-              "
-            >
-              Admin
-            </Link>
           </div>
         </div>
       </nav>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const SearchResults = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [selectedClasses, setSelectedClasses] = useState({}); // { [trainId]: classKey }
 
   if (!state) {
     navigate("/");
@@ -41,12 +42,11 @@ const SearchResults = () => {
     { key: "Sun", label: "S" },
   ];
 
-  // ✅ IMPORTANT FIX HERE
   const filteredTrains = allTrains.filter((t) =>
     t.source.toLowerCase() === source.toLowerCase() &&
     t.destination.toLowerCase() === destination.toLowerCase() &&
     t.days.includes(selectedDay) &&
-    t.seatAvailability?.[date] // ✅ date-wise seat check
+    t.seatAvailability?.[date]
   );
 
   const handleBook = (train) => {
@@ -56,11 +56,14 @@ const SearchResults = () => {
       return;
     }
 
+    const classBooked = selectedClasses[train.id] || "SL";
+
     navigate("/booking", {
       state: {
         train,
         date,
         seats: train.seatAvailability[date],
+        selectedClass: classBooked,
       },
     });
   };
@@ -68,7 +71,7 @@ const SearchResults = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <h2 className="text-3xl font-bold mb-6 text-center">
-        🚆 Available Trains
+        Available Trains
       </h2>
 
       {filteredTrains.length === 0 ? (
@@ -78,6 +81,7 @@ const SearchResults = () => {
       ) : (
         filteredTrains.map((t) => {
           const seats = t.seatAvailability[date];
+          const currentSelection = selectedClasses[t.id] || "SL";
 
           return (
             <div key={t.id} className="bg-white rounded-xl shadow-md p-6 mb-6">
@@ -131,19 +135,39 @@ const SearchResults = () => {
                 </div>
               </div>
 
-              {/* Seats */}
+              {/* Seats Selector */}
               <div className="flex gap-4 mb-4 flex-wrap">
-                <SeatCard label="Sleeper (SL)" value={seats.SL} />
-                <SeatCard label="AC 3 Tier (3A)" value={seats.AC3} />
-                <SeatCard label="AC 2 Tier (2A)" value={seats.AC2} />
-                <SeatCard label="AC First Class (1A)" value={seats.AC1} />
+                <SeatCard
+                  label="Sleeper (SL)"
+                  value={seats.SL ?? 0}
+                  active={currentSelection === "SL"}
+                  onClick={() => setSelectedClasses({ ...selectedClasses, [t.id]: "SL" })}
+                />
+                <SeatCard
+                  label="AC 3 Tier (3A)"
+                  value={seats.AC3 ?? seats["3AC"] ?? 0}
+                  active={currentSelection === "AC3"}
+                  onClick={() => setSelectedClasses({ ...selectedClasses, [t.id]: "AC3" })}
+                />
+                <SeatCard
+                  label="AC 2 Tier (2A)"
+                  value={seats.AC2 ?? seats["2AC"] ?? 0}
+                  active={currentSelection === "AC2"}
+                  onClick={() => setSelectedClasses({ ...selectedClasses, [t.id]: "AC2" })}
+                />
+                <SeatCard
+                  label="AC First Class (1A)"
+                  value={seats.AC1 ?? seats["1AC"] ?? 0}
+                  active={currentSelection === "AC1"}
+                  onClick={() => setSelectedClasses({ ...selectedClasses, [t.id]: "AC1" })}
+                />
               </div>
 
               {/* Footer */}
               <div className="flex justify-end border-t pt-4">
                 <button
                   onClick={() => handleBook(t)}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md"
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md font-semibold transition-all hover:shadow-md"
                 >
                   Book Now
                 </button>
@@ -156,10 +180,19 @@ const SearchResults = () => {
   );
 };
 
-const SeatCard = ({ label, value }) => (
-  <div className="border rounded-lg px-4 py-2">
-    <p className="font-semibold">{label}</p>
-    <p className="text-sm text-gray-600">Available: {value}</p>
+const SeatCard = ({ label, value, active, onClick }) => (
+  <div
+    onClick={onClick}
+    className={`border rounded-lg px-6 py-3 cursor-pointer transition-all select-none ${
+      active
+        ? "border-teal-600 bg-teal-50 text-teal-800 font-semibold shadow-sm"
+        : "border-gray-300 hover:border-teal-300 bg-white text-gray-700"
+    }`}
+  >
+    <p className="font-semibold text-sm">{label}</p>
+    <p className={`text-xs mt-1 ${active ? "text-teal-600" : "text-gray-500"}`}>
+      Available: {value}
+    </p>
   </div>
 );
 

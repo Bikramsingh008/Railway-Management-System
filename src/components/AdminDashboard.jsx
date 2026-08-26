@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 const AdminDashboard = () => {
   const [trains, setTrains] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const [formData, setFormData] = useState({
     trainName: "",
@@ -12,118 +14,80 @@ const AdminDashboard = () => {
     arrivalTime: "",
     journeyDate: "",
     seats: { SL: "", AC3: "", AC2: "", AC1: "" },
-    days: {
-      Mon: false,
-      Tue: false,
-      Wed: false,
-      Thu: false,
-      Fri: false,
-      Sat: false,
-      Sun: false,
-    },
+    prices: { SL: "", AC3: "", AC2: "", AC1: "" },
+    days: { Mon: false, Tue: false, Wed: false, Thu: false, Fri: false, Sat: false, Sun: false },
   });
 
-  useEffect(() => {
-    setTrains(JSON.parse(localStorage.getItem("trainData")) || []);
-  }, []);
+  // Load trains from SQLite via API
+  const fetchTrains = () => {
+    fetch("http://localhost:5000/api/trains")
+      .then(res => res.json())
+      .then(data => { if (data.success) setTrains(data.trains); });
+  };
 
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  useEffect(() => { fetchTrains(); }, []);
 
-  const handleSeatChange = (e) =>
-    setFormData({
-      ...formData,
-      seats: { ...formData.seats, [e.target.name]: e.target.value },
-    });
-
-  const handleDayChange = (e) =>
-    setFormData({
-      ...formData,
-      days: { ...formData.days, [e.target.name]: e.target.checked },
-    });
-
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSeatChange = (e) => setFormData({ ...formData, seats: { ...formData.seats, [e.target.name]: e.target.value } });
+  const handlePriceChange = (e) => setFormData({ ...formData, prices: { ...formData.prices, [e.target.name]: e.target.value } });
+  const handleDayChange = (e) => setFormData({ ...formData, days: { ...formData.days, [e.target.name]: e.target.checked } });
   const handleSelectAllDays = (e) => {
     const checked = e.target.checked;
     const updated = {};
-    Object.keys(formData.days).forEach((d) => (updated[d] = checked));
+    Object.keys(formData.days).forEach(d => (updated[d] = checked));
     setFormData({ ...formData, days: updated });
   };
 
-  const handleAddTrain = (e) => {
+  // Save train to SQLite via API
+  const handleAddTrain = async (e) => {
     e.preventDefault();
+    if (!formData.journeyDate) { alert("Select journey date"); return; }
 
-    if (!formData.journeyDate) {
-      alert("Select journey date");
-      return;
-    }
+    const selectedDays = Object.keys(formData.days).filter(d => formData.days[d]);
+    setLoading(true);
+    setMessage("");
 
-    const selectedDays = Object.keys(formData.days).filter(
-      (d) => formData.days[d]
-    );
-
-    const seatData = {
-      SL: Number(formData.seats.SL),
-      AC3: Number(formData.seats.AC3),
-      AC2: Number(formData.seats.AC2),
-      AC1: Number(formData.seats.AC1),
-    };
-
-    let updatedTrains = [...trains];
-
-    const existingTrainIndex = updatedTrains.findIndex(
-      (t) => t.trainNumber === formData.trainNumber
-    );
-
-    if (existingTrainIndex !== -1) {
-      // TRAIN EXISTS → ADD DATE-WISE SEATS
-      updatedTrains[existingTrainIndex].seatAvailability[
-        formData.journeyDate
-      ] = seatData;
-    } else {
-      // NEW TRAIN
-      updatedTrains.push({
-        id: Date.now(),
-        trainName: formData.trainName,
-        trainNumber: formData.trainNumber,
-        source: formData.source,
-        destination: formData.destination,
-        departureTime: formData.departureTime,
-        arrivalTime: formData.arrivalTime,
-        days: selectedDays,
-        seatAvailability: {
-          [formData.journeyDate]: seatData,
-        },
+    try {
+      const res = await fetch("http://localhost:5000/api/trains", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          trainName:     formData.trainName,
+          trainNumber:   formData.trainNumber,
+          source:        formData.source,
+          destination:   formData.destination,
+          departureTime: formData.departureTime,
+          arrivalTime:   formData.arrivalTime,
+          days:          selectedDays,
+          journeyDate:   formData.journeyDate,
+          seats:  { SL: formData.seats.SL,  AC3: formData.seats.AC3,  AC2: formData.seats.AC2,  AC1: formData.seats.AC1  },
+          prices: { SL: formData.prices.SL, AC3: formData.prices.AC3, AC2: formData.prices.AC2, AC1: formData.prices.AC1 },
+        }),
       });
+      const data = await res.json();
+      setMessage(data.message);
+      if (data.success) {
+        fetchTrains();
+        setFormData({
+          trainName:"", trainNumber:"", source:"", destination:"",
+          departureTime:"", arrivalTime:"", journeyDate:"",
+          seats:{ SL:"", AC3:"", AC2:"", AC1:"" },
+          prices:{ SL:"", AC3:"", AC2:"", AC1:"" },
+          days:{ Mon:false, Tue:false, Wed:false, Thu:false, Fri:false, Sat:false, Sun:false },
+        });
+      }
+    } catch {
+      setMessage("Error connecting to server.");
     }
-
-    setTrains(updatedTrains);
-    localStorage.setItem("trainData", JSON.stringify(updatedTrains));
-
-    setFormData({
-      trainName: "",
-      trainNumber: "",
-      source: "",
-      destination: "",
-      departureTime: "",
-      arrivalTime: "",
-      journeyDate: "",
-      seats: { SL: "", AC3: "", AC2: "", AC1: "" },
-      days: {
-        Mon: false,
-        Tue: false,
-        Wed: false,
-        Thu: false,
-        Fri: false,
-        Sat: false,
-        Sun: false,
-      },
-    });
+    setLoading(false);
   };
 
-  const handleDelete = (id) => {
-    const updated = trains.filter((t) => t.id !== id);
-    setTrains(updated);
-    localStorage.setItem("trainData", JSON.stringify(updated));
+  // Delete train from SQLite via API
+  const handleDelete = async (id) => {
+    if (!window.confirm("Delete this train?")) return;
+    const res = await fetch(`http://localhost:5000/api/trains/${id}`, { method: "DELETE" });
+    const data = await res.json();
+    if (data.success) fetchTrains();
   };
 
   return (
@@ -150,7 +114,7 @@ const AdminDashboard = () => {
 
         <h3 className="font-semibold mb-2">Seat Availability (For Selected Date)</h3>
         <div className="grid grid-cols-4 gap-3 mb-6">
-          {["SL", "3AC", "2AC", "1AC"].map((cls) => (
+          {["SL", "AC3", "AC2", "AC1"].map((cls) => (
             <input
               key={cls}
               type="number"
@@ -158,6 +122,21 @@ const AdminDashboard = () => {
               placeholder={cls}
               value={formData.seats[cls]}
               onChange={handleSeatChange}
+              className="input text-center"
+            />
+          ))}
+        </div>
+
+        <h3 className="font-semibold mb-2">Seat Prices (₹ per seat)</h3>
+        <div className="grid grid-cols-4 gap-3 mb-6">
+          {["SL", "AC3", "AC2", "AC1"].map((cls) => (
+            <input
+              key={cls}
+              type="number"
+              name={cls}
+              placeholder={`${cls} Price (₹)`}
+              value={formData.prices[cls]}
+              onChange={handlePriceChange}
               className="input text-center"
             />
           ))}
@@ -181,8 +160,17 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold">
-          Save Train Seats
+        {message && (
+          <p className={`mb-4 text-center font-semibold ${message.toLowerCase().includes("error") ? "text-red-600" : "text-emerald-700"}`}>
+            {message}
+          </p>
+        )}
+
+        <button
+          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold disabled:opacity-50"
+          disabled={loading}
+        >
+          {loading ? "Saving..." : "Save Train Seats"}
         </button>
       </form>
 
