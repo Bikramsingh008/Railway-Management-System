@@ -65,7 +65,11 @@ const Booking = () => {
   };
 
   const currentPrice = prices[selectedClass] || 0;
-  const totalPrice = currentPrice * passengers.length;
+  const baseFare = currentPrice * passengers.length;
+  const irctcFee = 15; // IRCTC Convenience Charge
+  const gstRate = 0.05; // 5% Govt. GST Passenger Tax
+  const gstAmount = Math.round(baseFare * gstRate);
+  const totalPrice = baseFare + irctcFee + gstAmount;
 
   const handlePassengerChange = (index, field, value) => {
     const newPassengers = [...passengers];
@@ -148,6 +152,9 @@ const Booking = () => {
         passenger_details: passengers,
         duration: getDuration(train.departureTime, train.arrivalTime),
         class_booked: selectedClass,
+        base_fare: baseFare,
+        service_fee: irctcFee,
+        gst_tax: gstAmount,
         total_price: totalPrice,
         booked_at: new Date().toISOString(),
         payment_status: "SUCCESS",
@@ -322,11 +329,11 @@ const Booking = () => {
             <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-6 flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
                 <p className="text-slate-500 dark:text-slate-400">Class: <span className="font-bold text-slate-800 dark:text-slate-100">{classNames[selectedClass]}</span></p>
-                <p className="text-slate-500 dark:text-slate-400">Passengers: <span className="font-bold text-slate-800 dark:text-slate-100">{passengers.length}</span></p>
+                <p className="text-slate-500 dark:text-slate-400">Base Fare: <span className="font-bold text-slate-800 dark:text-slate-100">₹{baseFare}</span> + Taxes/Fees (<span className="text-amber-600 dark:text-amber-400 font-semibold">₹{irctcFee + gstAmount}</span>)</p>
               </div>
               <div className="flex items-center gap-6">
                 <div className="text-right">
-                  <p className="text-slate-500 dark:text-slate-400 text-sm">Total Fare</p>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm">Total Payable</p>
                   <p className="text-3xl font-black text-teal-600 dark:text-teal-400">₹{totalPrice}</p>
                 </div>
                 <button onClick={handleProceedToConfirm} className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg transition-all hover:scale-[1.02]">
@@ -410,19 +417,26 @@ const Booking = () => {
 
             {/* Fare Summary */}
             <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-6 mb-6">
-              <h3 className="text-lg font-bold mb-3 text-slate-800 dark:text-slate-100">Fare Summary</h3>
+              <h3 className="text-lg font-bold mb-3 text-slate-800 dark:text-slate-100">Fare & Tax Summary</h3>
               <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300 pb-3 border-b border-slate-200 dark:border-slate-800">
                 <div className="flex justify-between">
                   <span>Base Ticket Fare ({classNames[selectedClass]} x {passengers.length})</span>
-                  <span className="font-semibold text-slate-800 dark:text-slate-100">₹{totalPrice}</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-100">₹{baseFare}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Reservation & Convenience Fee</span>
-                  <span className="text-emerald-600 font-semibold">FREE (₹0)</span>
+                  <span>IRCTC Convenience / Service Charge</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-100">₹{irctcFee}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Govt. GST (5% Rail Passenger Tax)</span>
+                  <span className="font-semibold text-amber-600 dark:text-amber-400">₹{gstAmount}</span>
                 </div>
               </div>
               <div className="flex justify-between items-center pt-3 text-lg font-bold text-slate-800 dark:text-slate-100">
-                <span>Total Amount Payable</span>
+                <div>
+                  <span>Final Amount Payable</span>
+                  <span className="text-xs text-slate-400 block font-normal">(Inclusive of all Taxes & IRCTC Charges)</span>
+                </div>
                 <span className="text-3xl font-extrabold text-teal-600 dark:text-teal-400">₹{totalPrice}</span>
               </div>
             </div>

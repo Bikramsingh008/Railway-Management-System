@@ -35,10 +35,10 @@ const TicketSlip = () => {
       ? JSON.parse(booking.passenger_details)
       : booking.passenger_details || [];
 
-  const baseFare        = booking.total_price || 0;
-  const convenienceFee  = 11.80;
-  const cateringCharge  = 0.00;
-  const totalFarePaid   = baseFare + convenienceFee;
+  const baseFare        = booking.base_fare || (booking.total_price ? Math.round(booking.total_price * 0.90) : 0);
+  const convenienceFee  = booking.service_fee || 15;
+  const gstTax          = booking.gst_tax || (booking.total_price ? Math.round(baseFare * 0.05) : 0);
+  const totalFarePaid   = booking.total_price || (baseFare + convenienceFee + gstTax);
   const status          = booking.status || "CONFIRMED";
 
   const formatDate = (dateStr) => {
@@ -237,19 +237,19 @@ const TicketSlip = () => {
             </h3>
             <div className="border border-slate-300 dark:border-slate-800 rounded-xl overflow-hidden text-sm">
               <div className="flex justify-between p-3 border-b border-slate-200 dark:border-slate-800">
-                <span className="text-slate-500 dark:text-slate-400">Ticket Fare ({passengers.length} pax)</span>
+                <span className="text-slate-500 dark:text-slate-400">Base Ticket Fare ({passengers.length} pax)</span>
                 <span className="font-semibold text-slate-800 dark:text-slate-100">₹{baseFare.toFixed(2)}</span>
               </div>
               <div className="flex justify-between p-3 border-b border-slate-200 dark:border-slate-800">
-                <span className="text-slate-500 dark:text-slate-400">Catering Charges</span>
-                <span className="font-semibold text-slate-800 dark:text-slate-100">₹{cateringCharge.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between p-3 border-b border-slate-200 dark:border-slate-800">
-                <span className="text-slate-500 dark:text-slate-400">IRCTC Convenience Fee (Incl. GST)</span>
+                <span className="text-slate-500 dark:text-slate-400">IRCTC Service Charge</span>
                 <span className="font-semibold text-slate-800 dark:text-slate-100">₹{convenienceFee.toFixed(2)}</span>
               </div>
+              <div className="flex justify-between p-3 border-b border-slate-200 dark:border-slate-800">
+                <span className="text-slate-500 dark:text-slate-400">Govt. GST Tax (5% Rail Tax)</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-100">₹{gstTax.toFixed(2)}</span>
+              </div>
               <div className="flex justify-between p-3 bg-teal-50/70 dark:bg-teal-950/40 font-extrabold text-teal-800 dark:text-teal-200 text-base">
-                <span>Total Fare (all inclusive)</span>
+                <span>Total Amount Paid (All inclusive)</span>
                 <span>₹{totalFarePaid.toFixed(2)}</span>
               </div>
             </div>
