@@ -34,12 +34,12 @@ const features = [
 ];
 
 const techStack = [
-  { name: "React", icon: "⚛️", color: "bg-sky-100 text-sky-700" },
-  { name: "Vite", icon: "⚡", color: "bg-purple-100 text-purple-700" },
-  { name: "Tailwind CSS", icon: "🎨", color: "bg-teal-100 text-teal-700" },
-  { name: "React Router", icon: "🔗", color: "bg-orange-100 text-orange-700" },
-  { name: "Node.js", icon: "🟢", color: "bg-green-100 text-green-700" },
-  { name: "SQL Database", icon: "🗄️", color: "bg-blue-100 text-blue-700" },
+  { name: "React", icon: "⚛️", color: "bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800" },
+  { name: "Vite", icon: "⚡", color: "bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800" },
+  { name: "Tailwind CSS", icon: "🎨", color: "bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800" },
+  { name: "React Router", icon: "🔗", color: "bg-orange-100 dark:bg-orange-950 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800" },
+  { name: "Node.js", icon: "🟢", color: "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800" },
+  { name: "SQL Database", icon: "🗄️", color: "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800" },
 ];
 
 const team = [
@@ -48,15 +48,15 @@ const team = [
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 via-sky-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-teal-50 via-sky-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-500">
 
       {/* Hero Section */}
       <section className="text-center py-20 px-6">
         <span className="text-6xl">🚆</span>
-        <h1 className="text-5xl md:text-6xl font-extrabold text-slate-800 mt-4 mb-4">
-          About <span className="text-teal-600">RailConnect</span>
+        <h1 className="text-5xl md:text-6xl font-extrabold text-slate-800 dark:text-slate-100 mt-4 mb-4">
+          About <span className="text-teal-600 dark:text-teal-400">RailConnect</span>
         </h1>
-        <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
           A modern Railway Management System designed to make train travel
           simpler, smarter, and more accessible for everyone — passengers and
           administrators alike.
@@ -66,24 +66,24 @@ const About = () => {
 
       {/* About the Project */}
       <section className="max-w-5xl mx-auto px-6 py-10">
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-10 border border-white/60">
-          <h2 className="text-3xl font-bold text-slate-700 mb-5">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-3xl shadow-xl p-10 border border-white/60 dark:border-slate-800">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-5">
             📌 What is RailConnect?
           </h2>
-          <p className="text-slate-600 text-lg leading-8 mb-4">
-            <strong>RailConnect</strong> is a full-featured Railway Management
+          <p className="text-slate-600 dark:text-slate-300 text-lg leading-8 mb-4">
+            <strong className="text-teal-600 dark:text-teal-400">RailConnect</strong> is a full-featured Railway Management
             System built as a student project to demonstrate real-world web
             development skills. It allows users to search for trains, check seat
             availability, and book tickets, while giving administrators complete
             control over the train network.
           </p>
-          <p className="text-slate-600 text-lg leading-8 mb-4">
+          <p className="text-slate-600 dark:text-slate-300 text-lg leading-8 mb-4">
             The project is inspired by the Indian Railway reservation system and
             aims to replicate its core functionalities in a clean, modern, and
             responsive interface. It covers everything from user authentication
             to admin dashboards.
           </p>
-          <p className="text-slate-600 text-lg leading-8">
+          <p className="text-slate-600 dark:text-slate-300 text-lg leading-8">
             Built using <strong>React</strong> on the frontend and designed to
             connect with a <strong>Node.js + SQL</strong> backend, this project
             is a complete end-to-end solution for managing railway operations
@@ -94,30 +94,30 @@ const About = () => {
 
       {/* Features Section */}
       <section className="max-w-6xl mx-auto px-6 py-14">
-        <h2 className="text-3xl font-bold text-center text-slate-700 mb-10">
+        <h2 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-100 mb-10">
           ✨ Key Features
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl shadow-md p-7 border border-slate-100
+              className="bg-white dark:bg-slate-900 rounded-2xl shadow-md p-7 border border-slate-100 dark:border-slate-800
                          hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <span className="text-4xl">{f.icon}</span>
-              <h3 className="text-xl font-bold text-slate-700 mt-3 mb-2">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mt-3 mb-2">
                 {f.title}
               </h3>
-              <p className="text-slate-500 leading-6">{f.desc}</p>
+              <p className="text-slate-500 dark:text-slate-400 leading-6">{f.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Tech Stack */}
-      <section className="bg-white/60 backdrop-blur py-14 px-6">
+      <section className="bg-white/60 dark:bg-slate-900/60 backdrop-blur py-14 px-6 border-y border-slate-200/50 dark:border-slate-800">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-slate-700 mb-10">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-10">
             🛠️ Tech Stack
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
@@ -135,7 +135,7 @@ const About = () => {
 
       {/* How it Works */}
       <section className="max-w-5xl mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-center text-slate-700 mb-10">
+        <h2 className="text-3xl font-bold text-center text-slate-800 dark:text-slate-100 mb-10">
           🚀 How It Works
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
@@ -147,11 +147,11 @@ const About = () => {
           ].map((s) => (
             <div
               key={s.step}
-              className="bg-gradient-to-b from-teal-500 to-emerald-600
-                         text-white rounded-2xl p-6 shadow-lg"
+              className="bg-gradient-to-b from-teal-500 to-emerald-600 dark:from-teal-600 dark:to-emerald-800
+                         text-white rounded-2xl p-6 shadow-lg relative overflow-hidden"
             >
               <div className="text-4xl mb-3">{s.icon}</div>
-              <div className="text-4xl font-black opacity-30 absolute">{s.step}</div>
+              <div className="text-4xl font-black opacity-30 absolute top-2 right-4">{s.step}</div>
               <p className="font-bold text-lg">{s.label}</p>
             </div>
           ))}
@@ -159,23 +159,23 @@ const About = () => {
       </section>
 
       {/* Developer Section */}
-      <section className="bg-white/60 backdrop-blur py-14 px-6">
+      <section className="bg-white/60 dark:bg-slate-900/60 backdrop-blur py-14 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-slate-700 mb-10">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-10">
             👨‍💻 Meet the Developer
           </h2>
           {team.map((member, i) => (
             <div
               key={i}
-              className="inline-flex flex-col items-center bg-white rounded-3xl
-                         shadow-xl px-14 py-10 border border-slate-100"
+              className="inline-flex flex-col items-center bg-white dark:bg-slate-900 rounded-3xl
+                         shadow-xl px-14 py-10 border border-slate-100 dark:border-slate-800"
             >
               <span className="text-7xl mb-4">{member.emoji}</span>
-              <h3 className="text-2xl font-bold text-slate-700">
+              <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
                 {member.name}
               </h3>
-              <p className="text-teal-600 font-semibold mt-1">{member.role}</p>
-              <p className="text-slate-500 mt-4 max-w-md text-sm leading-6">
+              <p className="text-teal-600 dark:text-teal-400 font-semibold mt-1">{member.role}</p>
+              <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-md text-sm leading-6">
                 Passionate about building real-world applications using modern
                 web technologies. This project is part of my learning journey in
                 full-stack development.
@@ -186,7 +186,7 @@ const About = () => {
       </section>
 
       {/* Footer Note */}
-      <section className="text-center py-12 text-slate-400 text-sm">
+      <section className="text-center py-12 text-slate-400 dark:text-slate-500 text-sm">
         <p>© 2026 RailConnect — Railway Management System. Built with ❤️ as a student project.</p>
       </section>
     </div>
@@ -194,3 +194,4 @@ const About = () => {
 };
 
 export default About;
+

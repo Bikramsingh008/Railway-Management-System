@@ -164,3 +164,31 @@
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
+
+/* Global Dark Mode Root Setup */
+html {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+html.dark, html.dark body {
+  background-color: #030712 !important;
+  color: #f8fafc !important;
+  color-scheme: dark;
+}
+
+.dark .labelStyle {
+  color: #cbd5e1 !important;
+}
+
+.dark .inputStyle {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+.dark .inputStyle:focus {
+  border-color: #14b8a6 !important;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.35) !important;
+}
+
+

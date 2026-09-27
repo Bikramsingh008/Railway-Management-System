@@ -72,10 +72,10 @@ const Faqs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-slate-950 dark:to-slate-900 py-16 px-4 transition-colors duration-500 text-slate-800 dark:text-slate-100">
       <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-5xl font-bold text-gray-800 mb-4">FAQs</h1>
-        <p className="text-gray-600 mb-10">
+        <h1 className="text-5xl font-extrabold text-slate-800 dark:text-slate-100 mb-4">FAQs</h1>
+        <p className="text-slate-600 dark:text-slate-400 mb-10 text-lg">
           Find answers to the most common questions about railway reservations.
         </p>
       </div>
@@ -84,18 +84,18 @@ const Faqs = () => {
         {railwayReservationFaqs.map((faq, index) => (
           <div
             key={faq.id}
-            className="border border-gray-200 rounded-2xl shadow-sm bg-white transition hover:shadow-md"
+            className="border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm bg-white dark:bg-slate-900 transition-all hover:shadow-md"
           >
             <button
               onClick={() => toggleFaq(index)}
               className="w-full flex justify-between items-center p-5 text-left"
             >
-              <span className="font-semibold text-gray-800 text-lg">
+              <span className="font-semibold text-slate-800 dark:text-slate-200 text-lg">
                 {faq.question}
               </span>
               <svg
                 className={`w-6 h-6 transform transition-transform duration-300 ${
-                  openIndex === index ? "rotate-180 text-blue-600" : "text-gray-500"
+                  openIndex === index ? "rotate-180 text-teal-600 dark:text-teal-400" : "text-slate-400 dark:text-slate-500"
                 }`}
                 fill="none"
                 stroke="currentColor"
@@ -107,7 +107,7 @@ const Faqs = () => {
             </button>
 
             {openIndex === index && (
-              <div className="px-5 pb-5 text-gray-600 border-t border-gray-100 animate-fadeIn">
+              <div className="px-5 pb-5 text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 pt-3 animate-fadeIn">
                 {faq.answer}
               </div>
             )}
@@ -119,3 +119,4 @@ const Faqs = () => {
 };
 
 export default Faqs;
+

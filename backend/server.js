@@ -201,6 +201,34 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+// Update User Route
+app.put('/api/user/:id', (req, res) => {
+    const { first_name, last_name, email, password } = req.body;
+    const userId = req.params.id;
+
+    if (password) {
+        // Update with password
+        db.run(
+            `UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?`,
+            [first_name, last_name, email, password, userId],
+            function(err) {
+                if (err) return res.status(400).json({ success: false, message: err.message });
+                res.json({ success: true, message: "Profile updated successfully!" });
+            }
+        );
+    } else {
+        // Update without password
+        db.run(
+            `UPDATE users SET first_name = ?, last_name = ?, email = ? WHERE id = ?`,
+            [first_name, last_name, email, userId],
+            function(err) {
+                if (err) return res.status(400).json({ success: false, message: err.message });
+                res.json({ success: true, message: "Profile updated successfully!" });
+            }
+        );
+    }
+});
+
 // ═════════════════════════════════════════════
 //  API ROUTES
 // ═════════════════════════════════════════════

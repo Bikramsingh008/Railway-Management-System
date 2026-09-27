@@ -1,14 +1,13 @@
 import React from "react";
-import MidComponent from "./Hero";       // Your search hero component
-import MovingTrainFooter from "./MovingTrainFooter"; // Moving train
+import MidComponent from "./Hero"; // Your search hero component
 
 const Home = () => {
   return (
     <>
       <MidComponent />
-      <MovingTrainFooter />
     </>
   );
 };
 
 export default Home;
+

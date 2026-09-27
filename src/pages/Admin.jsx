@@ -26,46 +26,46 @@ const Admin = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="flex bg-white shadow-lg rounded-2xl overflow-hidden w-full max-w-6xl">
-        <div className="w-1/2 hidden md:flex justify-center items-center bg-gray-50">
-          <img src={adminImg} alt="Admin login" className="w-4/5 h-auto" />
+    <div className="min-h-screen flex justify-center items-center p-6 transition-colors duration-500 bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100">
+      <div className="flex flex-col md:flex-row bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl rounded-3xl overflow-hidden w-full max-w-5xl transition-colors duration-300">
+        <div className="w-full md:w-1/2 flex justify-center items-center bg-slate-50 dark:bg-slate-800/50 p-8">
+          <img src={adminImg} alt="Admin login" className="w-4/5 h-auto drop-shadow-md" />
         </div>
 
-        <div className="w-full md:w-1/2 p-10">
-          <h2 className="text-4xl font-bold mb-2">Hello 👋, Admin</h2>
-          <p className="text-gray-600 mb-8">Sign into your account</p>
+        <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
+          <h2 className="text-4xl font-extrabold mb-2 text-slate-800 dark:text-slate-100">Hello 👋, Admin</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-8">Sign into your management console</p>
 
-          <form onSubmit={handleSubmit}>
-            <div className="mb-5">
-              <label className="block text-gray-700 mb-1">UserName</label>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="labelStyle">Username</label>
               <input
                 type="text"
                 name="username"
                 value={adminData.username}
                 onChange={handleChange}
                 placeholder="Enter username"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="inputStyle"
               />
             </div>
 
-            <div className="mb-5">
-              <label className="block text-gray-700 mb-1">Password</label>
+            <div>
+              <label className="labelStyle">Password</label>
               <input
                 type="password"
                 name="password"
                 value={adminData.password}
                 onChange={handleChange}
                 placeholder="Enter password"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="inputStyle"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-black text-white w-full py-2 rounded-md hover:bg-gray-800 transition"
+              className="w-full bg-slate-900 dark:bg-teal-600 hover:bg-slate-800 dark:hover:bg-teal-700 text-white font-bold py-3 rounded-xl transition shadow-lg"
             >
-              Login
+              Login to Admin Panel
             </button>
           </form>
         </div>
@@ -75,3 +75,4 @@ const Admin = () => {
 };
 
 export default Admin;
+
