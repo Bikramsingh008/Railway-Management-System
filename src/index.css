@@ -1,3 +1,17 @@
+/* ========================================================
+   RAILWAY DESIGN SYSTEM
+   ======================================================== */
+
+html, body {
+  cursor: default;
+  scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+button, a, select, [role="button"], label, .cursor-pointer {
+  cursor: pointer;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -15,60 +29,64 @@
 
 .labelStyle {
   display: block;
-  margin-bottom: 4px;
-  font-weight: 500;
+  margin-bottom: 6px;
+  font-weight: 600;
   color: #334155;
+  font-size: 0.925rem;
 }
 
 .inputStyle {
   width: 100%;
-  padding: 10px 14px;
-  border-radius: 0.6rem;
-  background: rgba(255, 255, 255, 0.85);
+  padding: 12px 16px;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid #cbd5e1;
-  color: #1e293b;
+  color: #0f172a;
   outline: none;
-  transition: all 0.2s ease;
+  font-size: 1rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .inputStyle:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
+  border-color: #0d9488;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.25);
 }
 
 .btnPrimary {
-  background: #0d9488;
-  padding: 10px 26px;
-  border-radius: 0.6rem;
+  background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+  padding: 12px 28px;
+  border-radius: 0.85rem;
   color: white;
-  font-weight: 600;
-  transition: 0.3s;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
 }
 
 .btnPrimary:hover {
-  background: #0f766e;
-  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13, 148, 136, 0.45);
 }
 
 .btnDanger {
-  background: #f87171;
-  padding: 10px 26px;
-  border-radius: 0.6rem;
+  background: #f43f5e;
+  padding: 10px 24px;
+  border-radius: 0.75rem;
   color: white;
   font-weight: 600;
   transition: 0.3s;
 }
 
 .btnDanger:hover {
-  background: #ef4444;
-  box-shadow: 0 8px 20px rgba(248, 113, 113, 0.35);
+  background: #e11d48;
+  box-shadow: 0 8px 20px rgba(244, 63, 94, 0.35);
 }
 
 /* Navbar slide-down animation */
 @keyframes navbarDown {
   from {
     opacity: 0;
-    transform: translateY(-15px);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
@@ -77,92 +95,48 @@
 }
 
 .animate-navbarDown {
-  animation: navbarDown 0.5s ease-out forwards;
-}
-
-/* Bigger buttons */
-.btnPrimarySmall,
-.btnSecondarySmall,
-.btnLogout,
-.btnDangerSmall {
-  padding: 10px 22px;
-  border-radius: 0.75rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-/* Button colors */
-.btnPrimarySmall {
-  background: #0d9488;
-  color: white;
-}
-
-.btnPrimarySmall:hover {
-  background: #0f766e;
-  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
-}
-
-.btnSecondarySmall {
-  background: #38bdf8;
-  color: white;
-}
-
-.btnSecondarySmall:hover {
-  background: #0ea5e9;
-  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
-}
-
-.btnLogout {
-  background: #f87171;
-  color: white;
-}
-
-.btnLogout:hover {
-  background: #ef4444;
-  box-shadow: 0 4px 14px rgba(248, 113, 113, 0.35);
-}
-
-.btnDangerSmall {
-  background: #fb7185;
-  color: white;
-}
-
-.btnDangerSmall:hover {
-  background: #f43f5e;
-  box-shadow: 0 4px 14px rgba(251, 113, 133, 0.35);
-}
-/* Input styling */
-.inputStyle {
-  width: 100%;
-  padding: 14px 18px;
-  font-size: 1.1rem;
-  border-radius: 0.9rem;
-  border: 1px solid #cbd5e1;
-  outline: none;
-  transition: 0.3s;
-}
-
-.inputStyle:focus {
-  border-color: #14b8a6;
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.25);
+  animation: navbarDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Floating train animation */
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }
 
 .animate-float {
-  animation: float 5s ease-in-out infinite;
+  animation: float 4.5s ease-in-out infinite;
+}
+
+/* Track sleeper lines effect */
+.railway-track-border {
+  position: relative;
+}
+.railway-track-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 2%;
+  right: 2%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #0d9488 0px,
+    #0d9488 6px,
+    transparent 6px,
+    transparent 16px
+  );
+  opacity: 0.6;
+}
+
+/* Pulse signal */
+@keyframes signalPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.9); }
+}
+.animate-signal {
+  animation: signalPulse 2s ease-in-out infinite;
 }
 
 /* Global Dark Mode Root Setup */
@@ -181,14 +155,59 @@ html.dark, html.dark body {
 }
 
 .dark .inputStyle {
-  background: rgba(30, 41, 59, 0.9) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
   border-color: #334155 !important;
   color: #f8fafc !important;
 }
 
 .dark .inputStyle:focus {
   border-color: #14b8a6 !important;
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.35) !important;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.35) !important;
 }
 
+/* ========================================================
+   PRINT & PDF MEDIA STYLES (FLAWLESS TICKET GENERATION)
+   ======================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+  
+  /* Hide navbar, footer, action buttons, fixed components */
+  nav, footer, #ticket-actions, .no-print, [role="navigation"], .animate-trainMove {
+    display: none !important;
+  }
+  
+  body, html, #root {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
+  }
 
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #ticket-slip-root {
+    display: block !important;
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  #ticket-slip-root * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}

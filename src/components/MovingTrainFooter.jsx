@@ -29,11 +29,6 @@ const MovingTrainFooter = () => {
         borderColor: isDark ? "rgba(51,65,85,0.6)" : "rgba(153,212,196,0.5)",
       }}
     >
-      {/* Overhead Catenary Electric Power Line */}
-      <div
-        className="absolute top-2 left-0 w-full h-[1px]"
-        style={{ background: isDark ? "rgba(251,191,36,0.5)" : "rgba(148,163,184,0.2)" }}
-      ></div>
 
       {/* Railway Track Structure */}
       <div className="absolute bottom-0 w-full flex flex-col items-center">

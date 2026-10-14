@@ -95,16 +95,16 @@ function seedTrains() {
         console.log("Seeding train data...");
 
         const trains = [
-            { train_name:"RailConnect Express",     train_number:"RC101", source:"Delhi",      destination:"Mumbai",    departure_time:"06:00", arrival_time:"22:00", days:["Mon","Wed","Fri","Sun"],                    price_SL:800,  price_AC3:1500, price_AC2:2200, price_AC1:3500 },
-            { train_name:"Himalayan Swift",          train_number:"RC102", source:"Delhi",      destination:"Dehradun",  departure_time:"08:00", arrival_time:"14:00", days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],  price_SL:350,  price_AC3:700,  price_AC2:1100, price_AC1:1800 },
-            { train_name:"Coastal Queen",            train_number:"RC103", source:"Mumbai",     destination:"Goa",       departure_time:"07:30", arrival_time:"15:30", days:["Tue","Thu","Sat"],                          price_SL:450,  price_AC3:900,  price_AC2:1400, price_AC1:2200 },
-            { train_name:"Southern Star",            train_number:"RC104", source:"Chennai",    destination:"Bangalore", departure_time:"10:00", arrival_time:"15:30", days:["Mon","Wed","Fri","Sat"],                    price_SL:300,  price_AC3:600,  price_AC2:950,  price_AC1:1500 },
-            { train_name:"Gateway Superfast",        train_number:"RC105", source:"Ahmedabad",  destination:"Mumbai",    departure_time:"05:30", arrival_time:"12:30", days:["Mon","Tue","Thu","Fri","Sun"],              price_SL:420,  price_AC3:850,  price_AC2:1250, price_AC1:2000 },
-            { train_name:"Eastern Arrow",            train_number:"RC106", source:"Kolkata",    destination:"Patna",     departure_time:"09:15", arrival_time:"16:00", days:["Mon","Wed","Fri"],                          price_SL:380,  price_AC3:750,  price_AC2:1150, price_AC1:1900 },
-            { train_name:"Desert Wind",              train_number:"RC107", source:"Jaipur",     destination:"Delhi",     departure_time:"14:00", arrival_time:"18:30", days:["Tue","Thu","Sat","Sun"],                    price_SL:250,  price_AC3:500,  price_AC2:800,  price_AC1:1300 },
-            { train_name:"Deccan Pride",             train_number:"RC108", source:"Pune",       destination:"Hyderabad", departure_time:"18:00", arrival_time:"06:30", days:["Mon","Wed","Fri","Sun"],                    price_SL:550,  price_AC3:1000, price_AC2:1600, price_AC1:2500 },
-            { train_name:"Haldwani Janshatabdi",     train_number:"RC109", source:"Haldwani",   destination:"Dehradun",  departure_time:"14:00", arrival_time:"20:00", days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],  price_SL:200,  price_AC3:450,  price_AC2:700,  price_AC1:1100 },
-            { train_name:"Nilgiri Mountain Express", train_number:"RC110", source:"Coimbatore", destination:"Ooty",      departure_time:"07:10", arrival_time:"12:10", days:["Tue","Thu","Sat","Sun"],                    price_SL:180,  price_AC3:380,  price_AC2:600,  price_AC1:950  },
+            { train_name: "RailConnect Express", train_number: "RC101", source: "Delhi", destination: "Mumbai", departure_time: "06:00", arrival_time: "22:00", days: ["Mon", "Wed", "Fri", "Sun"], price_SL: 800, price_AC3: 1500, price_AC2: 2200, price_AC1: 3500 },
+            { train_name: "Himalayan Swift", train_number: "RC102", source: "Delhi", destination: "Dehradun", departure_time: "08:00", arrival_time: "14:00", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], price_SL: 350, price_AC3: 700, price_AC2: 1100, price_AC1: 1800 },
+            { train_name: "Coastal Queen", train_number: "RC103", source: "Mumbai", destination: "Goa", departure_time: "07:30", arrival_time: "15:30", days: ["Tue", "Thu", "Sat"], price_SL: 450, price_AC3: 900, price_AC2: 1400, price_AC1: 2200 },
+            { train_name: "Southern Star", train_number: "RC104", source: "Chennai", destination: "Bangalore", departure_time: "10:00", arrival_time: "15:30", days: ["Mon", "Wed", "Fri", "Sat"], price_SL: 300, price_AC3: 600, price_AC2: 950, price_AC1: 1500 },
+            { train_name: "Gateway Superfast", train_number: "RC105", source: "Ahmedabad", destination: "Mumbai", departure_time: "05:30", arrival_time: "12:30", days: ["Mon", "Tue", "Thu", "Fri", "Sun"], price_SL: 420, price_AC3: 850, price_AC2: 1250, price_AC1: 2000 },
+            { train_name: "Eastern Arrow", train_number: "RC106", source: "Kolkata", destination: "Patna", departure_time: "09:15", arrival_time: "16:00", days: ["Mon", "Wed", "Fri"], price_SL: 380, price_AC3: 750, price_AC2: 1150, price_AC1: 1900 },
+            { train_name: "Desert Wind", train_number: "RC107", source: "Jaipur", destination: "Delhi", departure_time: "14:00", arrival_time: "18:30", days: ["Tue", "Thu", "Sat", "Sun"], price_SL: 250, price_AC3: 500, price_AC2: 800, price_AC1: 1300 },
+            { train_name: "Deccan Pride", train_number: "RC108", source: "Pune", destination: "Hyderabad", departure_time: "18:00", arrival_time: "06:30", days: ["Mon", "Wed", "Fri", "Sun"], price_SL: 550, price_AC3: 1000, price_AC2: 1600, price_AC1: 2500 },
+            { train_name: "Haldwani Janshatabdi", train_number: "RC109", source: "Haldwani", destination: "Dehradun", departure_time: "14:00", arrival_time: "20:00", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], price_SL: 200, price_AC3: 450, price_AC2: 700, price_AC1: 1100 },
+            { train_name: "Nilgiri Mountain Express", train_number: "RC110", source: "Coimbatore", destination: "Ooty", departure_time: "07:10", arrival_time: "12:10", days: ["Tue", "Thu", "Sat", "Sun"], price_SL: 180, price_AC3: 380, price_AC2: 600, price_AC1: 950 },
         ];
 
         const insertTrain = db.prepare(`
@@ -125,7 +125,7 @@ function seedTrains() {
                 t.train_name, t.train_number, t.source, t.destination,
                 t.departure_time, t.arrival_time, JSON.stringify(t.days),
                 t.price_SL, t.price_AC3, t.price_AC2, t.price_AC1,
-                function(err) {
+                function (err) {
                     if (err) return;
                     const trainId = this.lastID;
                     dates.forEach(date => {
@@ -146,18 +146,18 @@ function seedTrains() {
 function buildTrainObject(trainRow, seatRows) {
     const seatAvailability = {};
     (seatRows || []).forEach(s => {
-        seatAvailability[s.journey_date] = { SL:s.seats_SL, AC3:s.seats_AC3, AC2:s.seats_AC2, AC1:s.seats_AC1 };
+        seatAvailability[s.journey_date] = { SL: s.seats_SL, AC3: s.seats_AC3, AC2: s.seats_AC2, AC1: s.seats_AC1 };
     });
     return {
-        id:            trainRow.id,
-        trainName:     trainRow.train_name,
-        trainNumber:   trainRow.train_number,
-        source:        trainRow.source,
-        destination:   trainRow.destination,
+        id: trainRow.id,
+        trainName: trainRow.train_name,
+        trainNumber: trainRow.train_number,
+        source: trainRow.source,
+        destination: trainRow.destination,
         departureTime: trainRow.departure_time,
-        arrivalTime:   trainRow.arrival_time,
-        days:          JSON.parse(trainRow.days || '[]'),
-        ticketPrices:  { SL:trainRow.price_SL, AC3:trainRow.price_AC3, AC2:trainRow.price_AC2, AC1:trainRow.price_AC1 },
+        arrivalTime: trainRow.arrival_time,
+        days: JSON.parse(trainRow.days || '[]'),
+        ticketPrices: { SL: trainRow.price_SL, AC3: trainRow.price_AC3, AC2: trainRow.price_AC2, AC1: trainRow.price_AC1 },
         seatAvailability,
     };
 }
@@ -165,7 +165,7 @@ function buildTrainObject(trainRow, seatRows) {
 // User Registration Route
 app.post('/api/register', (req, res) => {
     const { username, password, email, firstName, lastName } = req.body;
-    
+
     // Check if user exists
     db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, row) => {
         if (err) return res.status(500).json({ success: false, message: err.message });
@@ -173,7 +173,7 @@ app.post('/api/register', (req, res) => {
 
         // Insert new user
         const sql = `INSERT INTO users (username, password, email, first_name, last_name) VALUES (?, ?, ?, ?, ?)`;
-        db.run(sql, [username, password, email, firstName, lastName], function(err) {
+        db.run(sql, [username, password, email, firstName, lastName], function (err) {
             if (err) {
                 res.status(400).json({ success: false, message: err.message });
                 return;
@@ -211,7 +211,7 @@ app.put('/api/user/:id', (req, res) => {
         db.run(
             `UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?`,
             [first_name, last_name, email, password, userId],
-            function(err) {
+            function (err) {
                 if (err) return res.status(400).json({ success: false, message: err.message });
                 res.json({ success: true, message: "Profile updated successfully!" });
             }
@@ -221,7 +221,7 @@ app.put('/api/user/:id', (req, res) => {
         db.run(
             `UPDATE users SET first_name = ?, last_name = ?, email = ? WHERE id = ?`,
             [first_name, last_name, email, userId],
-            function(err) {
+            function (err) {
                 if (err) return res.status(400).json({ success: false, message: err.message });
                 res.json({ success: true, message: "Profile updated successfully!" });
             }
@@ -256,32 +256,32 @@ app.get('/api/trains', (req, res) => {
 app.post('/api/trains', (req, res) => {
     const { trainName, trainNumber, source, destination, departureTime, arrivalTime, days, journeyDate, seats, prices } = req.body;
     const daysJson = JSON.stringify(Array.isArray(days) ? days : []);
-    const seatSL=Number(seats?.SL||0), seatAC3=Number(seats?.AC3||0), seatAC2=Number(seats?.AC2||0), seatAC1=Number(seats?.AC1||0);
-    const pSL=Number(prices?.SL||0), pAC3=Number(prices?.AC3||0), pAC2=Number(prices?.AC2||0), pAC1=Number(prices?.AC1||0);
+    const seatSL = Number(seats?.SL || 0), seatAC3 = Number(seats?.AC3 || 0), seatAC2 = Number(seats?.AC2 || 0), seatAC1 = Number(seats?.AC1 || 0);
+    const pSL = Number(prices?.SL || 0), pAC3 = Number(prices?.AC3 || 0), pAC2 = Number(prices?.AC2 || 0), pAC1 = Number(prices?.AC1 || 0);
 
     db.get(`SELECT id FROM trains WHERE train_number = ?`, [trainNumber], (err, existing) => {
         if (err) return res.status(500).json({ success: false, message: err.message });
 
         if (existing) {
             const trainId = existing.id;
-            db.run(`UPDATE trains SET price_SL=?,price_AC3=?,price_AC2=?,price_AC1=? WHERE id=?`, [pSL,pAC3,pAC2,pAC1,trainId]);
+            db.run(`UPDATE trains SET price_SL=?,price_AC3=?,price_AC2=?,price_AC1=? WHERE id=?`, [pSL, pAC3, pAC2, pAC1, trainId]);
             db.run(`INSERT OR REPLACE INTO train_seats (train_id,journey_date,seats_SL,seats_AC3,seats_AC2,seats_AC1) VALUES (?,?,?,?,?,?)`,
                 [trainId, journeyDate, seatSL, seatAC3, seatAC2, seatAC1],
                 err2 => err2
-                    ? res.status(500).json({ success:false, message:err2.message })
-                    : res.json({ success:true, message:`Seats updated for ${trainNumber} on ${journeyDate}` })
+                    ? res.status(500).json({ success: false, message: err2.message })
+                    : res.json({ success: true, message: `Seats updated for ${trainNumber} on ${journeyDate}` })
             );
         } else {
             db.run(`INSERT INTO trains (train_name,train_number,source,destination,departure_time,arrival_time,days,price_SL,price_AC3,price_AC2,price_AC1) VALUES (?,?,?,?,?,?,?,?,?,?,?)`,
-                [trainName,trainNumber,source,destination,departureTime,arrivalTime,daysJson,pSL,pAC3,pAC2,pAC1],
-                function(err2) {
-                    if (err2) return res.status(500).json({ success:false, message:err2.message });
+                [trainName, trainNumber, source, destination, departureTime, arrivalTime, daysJson, pSL, pAC3, pAC2, pAC1],
+                function (err2) {
+                    if (err2) return res.status(500).json({ success: false, message: err2.message });
                     const trainId = this.lastID;
                     db.run(`INSERT OR REPLACE INTO train_seats (train_id,journey_date,seats_SL,seats_AC3,seats_AC2,seats_AC1) VALUES (?,?,?,?,?,?)`,
                         [trainId, journeyDate, seatSL, seatAC3, seatAC2, seatAC1],
                         err3 => err3
-                            ? res.status(500).json({ success:false, message:err3.message })
-                            : res.json({ success:true, message:`Train ${trainNumber} added successfully.` })
+                            ? res.status(500).json({ success: false, message: err3.message })
+                            : res.json({ success: true, message: `Train ${trainNumber} added successfully.` })
                     );
                 }
             );
@@ -294,9 +294,9 @@ app.post('/api/trains', (req, res) => {
 app.delete('/api/trains/:id', (req, res) => {
     const id = req.params.id;
     db.run(`DELETE FROM trains WHERE id=?`, [id], err => {
-        if (err) return res.status(500).json({ success:false, message:err.message });
+        if (err) return res.status(500).json({ success: false, message: err.message });
         db.run(`DELETE FROM train_seats WHERE train_id=?`, [id]);
-        res.json({ success:true, message:"Train deleted." });
+        res.json({ success: true, message: "Train deleted." });
     });
 });
 
@@ -308,12 +308,12 @@ app.post('/api/book', (req, res) => {
     const passengersStr = JSON.stringify(passenger_details);
 
     db.run(`INSERT INTO bookings (user_id,train_name,train_number,pnr,date,source,destination,departure_time,arrival_time,boarding_station,status,passenger_details,duration,class_booked,total_price) VALUES (?,?,?,?,?,?,?,?,?,?,'BOOKED',?,?,?,?)`,
-        [user_id,train_name,train_number,pnr,date,source,destination,departure_time,arrival_time,boarding_station,passengersStr,duration,class_booked,total_price],
-        function(err) {
-            if (err) return res.status(400).json({ success:false, message:err.message });
+        [user_id, train_name, train_number, pnr, date, source, destination, departure_time, arrival_time, boarding_station, passengersStr, duration, class_booked, total_price],
+        function (err) {
+            if (err) return res.status(400).json({ success: false, message: err.message });
 
             // Decrement seat count
-            const colMap = { SL:'seats_SL', AC3:'seats_AC3', AC2:'seats_AC2', AC1:'seats_AC1' };
+            const colMap = { SL: 'seats_SL', AC3: 'seats_AC3', AC2: 'seats_AC2', AC1: 'seats_AC1' };
             const col = colMap[class_booked];
             if (col) {
                 db.get(`SELECT id FROM trains WHERE train_number=?`, [train_number], (e, trow) => {
@@ -321,7 +321,7 @@ app.post('/api/book', (req, res) => {
                         db.run(`UPDATE train_seats SET ${col}=MAX(0,${col}-1) WHERE train_id=? AND journey_date=?`, [trow.id, date]);
                 });
             }
-            res.json({ success:true, message:"Ticket booked successfully!", pnr });
+            res.json({ success: true, message: "Ticket booked successfully!", pnr });
         }
     );
 });
@@ -329,16 +329,16 @@ app.post('/api/book', (req, res) => {
 // ── GET /api/bookings/:userId ─────────────────
 app.get('/api/bookings/:userId', (req, res) => {
     db.all(`SELECT * FROM bookings WHERE user_id=? ORDER BY id DESC`, [req.params.userId], (err, rows) => {
-        if (err) return res.status(400).json({ success:false, message:err.message });
-        res.json({ success:true, bookings:rows });
+        if (err) return res.status(400).json({ success: false, message: err.message });
+        res.json({ success: true, bookings: rows });
     });
 });
 
 // ── GET /api/booking/:bookingId ───────────────
 app.get('/api/booking/:bookingId', (req, res) => {
     db.get(`SELECT * FROM bookings WHERE id=?`, [req.params.bookingId], (err, row) => {
-        if (err) return res.status(400).json({ success:false, message:err.message });
-        res.json({ success:true, booking:row });
+        if (err) return res.status(400).json({ success: false, message: err.message });
+        res.json({ success: true, booking: row });
     });
 });
 
@@ -346,8 +346,8 @@ app.get('/api/booking/:bookingId', (req, res) => {
 // Admin: view all registered users
 app.get('/api/admin/users', (req, res) => {
     db.all(`SELECT id,username,email,first_name,last_name FROM users ORDER BY id DESC`, [], (err, rows) => {
-        if (err) return res.status(500).json({ success:false, message:err.message });
-        res.json({ success:true, users:rows });
+        if (err) return res.status(500).json({ success: false, message: err.message });
+        res.json({ success: true, users: rows });
     });
 });
 

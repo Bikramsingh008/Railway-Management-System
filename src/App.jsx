@@ -29,7 +29,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 pb-32">
+      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 pb-32 overflow-x-hidden w-full">
         <Navbar />
 
         <main className="flex-1">
